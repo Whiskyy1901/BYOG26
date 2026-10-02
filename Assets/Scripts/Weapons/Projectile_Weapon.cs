@@ -12,12 +12,18 @@ public class Projectile_Weapon : MonoBehaviour
     [SerializeField] private Transform _firePos;
     
     [Header("Projectile")]
+    [SerializeField] private int _pelletCount = 1;
     [SerializeField] private GameObject _bullet;
     [SerializeField] private float _bulletSpeed;
     [SerializeField] private float _damage = 1f;
 
     [Header("Bullet Spread")]
-    [SerializeField] private float _spreadAngle = 0;
+    [SerializeField] private float minSpread = 2f;
+    [SerializeField] private float maxSpread = 12f;
+    [SerializeField] private float bloomPerShot = 1.5f;
+    [SerializeField] private float bloomRecovery = 8f;   // degrees per second
+    [SerializeField] private bool clusterTowardCenter = true;
+    private float currentSpread;
 
     [Header("Firetype")] [SerializeField] private FireType _fireType;
     
@@ -27,11 +33,13 @@ public class Projectile_Weapon : MonoBehaviour
     {
         _fireAction = InputSystem.actions.FindAction(("Attack"));
         _fireInterval = 1 / _fireRate;
+        currentSpread = minSpread;
     }
 
     private void Update()
     {
         _timeBetweenFire += Time.deltaTime;
+        currentSpread = Mathf.MoveTowards(currentSpread, minSpread, bloomRecovery * Time.deltaTime);
 
         if (_fireAction.IsPressed() && _timeBetweenFire >= _fireInterval && _fireType == FireType.Automatic)
         {
@@ -47,16 +55,41 @@ public class Projectile_Weapon : MonoBehaviour
 
     private void Shoot()
     {
-        GameObject bullet = Instantiate(_bullet, _firePos.position, _firePos.rotation);
+        for (int i = 0; i < _pelletCount; i++)
+        {
+            float spread = currentSpread;
 
-        if (bullet.TryGetComponent<Damage>(out var damage))
-        {
-            damage.Initialization(_damage);
+            float offset = GetSpreadOffset(spread);
+            Quaternion rotation = _firePos.rotation * Quaternion.Euler(0f, 0f, offset);
+            GameObject bullet = Instantiate(_bullet, _firePos.position, rotation);
+
+            if (bullet.TryGetComponent<Damage>(out var damage))
+            {
+                damage.Initialization(_damage);
+            }
+            
+            if (bullet.TryGetComponent<Move_Forward>(out var move))
+            {
+                move.Initialization(_bulletSpeed * Random.Range(0.85f, 1.15f));
+            }
+            
+            currentSpread = Mathf.Min(currentSpread + bloomPerShot, maxSpread);
+
         }
-        
-        if (bullet.TryGetComponent<Move_Forward>(out var move))
+    }
+    
+    private float GetSpreadOffset(float spread)
+    {
+        float half = spread * 0.5f;
+ 
+        if (clusterTowardCenter)
         {
-            move.Initialization(_bulletSpeed);
+            // Average of two randoms gives a triangular distribution
+            float a = Random.Range(-half, half);
+            float b = Random.Range(-half, half);
+            return (a + b) * 0.5f;
         }
+ 
+        return Random.Range(-half, half);
     }
 }
