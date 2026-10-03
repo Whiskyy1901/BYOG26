@@ -24,6 +24,7 @@ public class Gun_Rotation : MonoBehaviour
 
     private void Update()
     {
+        if (PauseMenu.IsPaused) return;
         if (Mouse.current == null) return;
 
         Vector2 mouseWorldPos = _cam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
