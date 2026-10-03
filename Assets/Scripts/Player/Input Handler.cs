@@ -10,23 +10,28 @@ public class InputHandler : MonoBehaviour
     private InputAction _dashAction;
     private InputAction _sprintAction;
     private bool _isSprinting;
+    private InputAction _switchAction;
 
     public Vector2 MoveVector => _moveVector;
     public InputAction DashAction => _dashAction;
     public bool IsSprinting => _isSprinting;
+    public InputAction SwitchAction => _switchAction;
 
 
     private void Awake()
-    {   takingInput = true;
+    {
+        takingInput = true;
         _moveAction = InputSystem.actions.FindAction("Move");
         _dashAction = InputSystem.actions.FindAction("Dash");
         _sprintAction = InputSystem.actions.FindAction("Sprint");
+        _switchAction = InputSystem.actions.FindAction("Switch");
     }
     private void OnEnable()
     {
         _moveAction?.Enable();
         _dashAction?.Enable();
         _sprintAction?.Enable();
+        _switchAction?.Enable();
     }
 
     private void Update()
