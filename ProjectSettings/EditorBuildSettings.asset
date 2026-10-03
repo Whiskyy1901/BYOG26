@@ -6,8 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Altaaf Demo Scene.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
+    path: Assets/Scenes/Main Menu.unity
+    guid: 8df65e125043f0545ae2911974b5c6b5
+  - enabled: 1
+    path: Assets/Scenes/Ishant Demo Scene.unity
+    guid: acf7ff04f922e2241a769ffe9f5ca6f4
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 48b121f71d7f32c4aa9609804dc48ce0, type: 3}
   m_UseUCBPForAssetBundles: 0
