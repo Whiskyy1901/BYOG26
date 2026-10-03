@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6969022021038757282}
   - component: {fileID: 5821721799203185150}
   - component: {fileID: 813606488454407431}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,6 +118,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61de7bdca34cdff43b1be23d3ca92f18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Damage
+  _toDamage:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!58 &813606488454407431
 CircleCollider2D:
   m_ObjectHideFlags: 0

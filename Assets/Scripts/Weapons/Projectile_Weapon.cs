@@ -55,10 +55,15 @@ public class Projectile_Weapon : MonoBehaviour
 
     private void Shoot()
     {
+        // One shake per trigger pull (the camera scales it by pellet count itself)
+        if (CameraFollow.Instance != null)
+            CameraFollow.Instance.ShakeFromShot(_damage, _pelletCount);
+
+        // Every pellet in this shot uses the same spread value
+        float spread = currentSpread;
+
         for (int i = 0; i < _pelletCount; i++)
         {
-            float spread = currentSpread;
-
             float offset = GetSpreadOffset(spread);
             Quaternion rotation = _firePos.rotation * Quaternion.Euler(0f, 0f, offset);
             GameObject bullet = Instantiate(_bullet, _firePos.position, rotation);
@@ -72,10 +77,10 @@ public class Projectile_Weapon : MonoBehaviour
             {
                 move.Initialization(_bulletSpeed * Random.Range(0.85f, 1.15f));
             }
-            
-            currentSpread = Mathf.Min(currentSpread + bloomPerShot, maxSpread);
-
         }
+
+        // Bloom grows once per shot, not once per pellet
+        currentSpread = Mathf.Min(currentSpread + bloomPerShot, maxSpread);
     }
     
     private float GetSpreadOffset(float spread)

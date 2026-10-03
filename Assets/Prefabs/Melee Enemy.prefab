@@ -10,12 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 3049024235215091540}
   - component: {fileID: 3449957516126890765}
-  - component: {fileID: 2805134419785036474}
   - component: {fileID: 6086741759788129312}
   - component: {fileID: 280601789773319746}
   - component: {fileID: 944366149433112234}
-  m_Layer: 0
-  m_Name: Basic Enemy
+  - component: {fileID: -5629309572488531179}
+  m_Layer: 6
+  m_Name: Melee Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -95,22 +95,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &2805134419785036474
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1495483174310231875}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76d328848ac4a3044a03fa8ccea6eca9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BasicEnemy
-  _speed: 1
-  _damage: 1
-  _damageOnContact: 1
-  _timeBetweenAttacks: 1
 --- !u!114 &6086741759788129312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,3 +171,24 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.28
+--- !u!114 &-5629309572488531179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1495483174310231875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b5a2f7697e441f4593a864aff3630a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  _speed: 3
+  _damage: 1
+  _damageOnContact: 1
+  _timeBetweenAttacks: 1
+  _attackRange: 1.2
+  _hitRange: 1.6
+  _windup: 0.4
+  _recovery: 0.6
+  _windupColor: {r: 1, g: 0, b: 0.021260738, a: 1}

@@ -10,12 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 3049024235215091540}
   - component: {fileID: 3449957516126890765}
-  - component: {fileID: 2805134419785036474}
   - component: {fileID: 6086741759788129312}
   - component: {fileID: 280601789773319746}
   - component: {fileID: 944366149433112234}
-  m_Layer: 0
-  m_Name: Basic Enemy
+  - component: {fileID: 3639852948119172250}
+  m_Layer: 6
+  m_Name: Dash Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,13 +29,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1495483174310231875}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!212 &3449957516126890765
 SpriteRenderer:
   serializedVersion: 2
@@ -83,10 +83,10 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
-  m_Color: {r: 0.85660374, g: 0.34749016, b: 0.34749016, a: 1}
+  m_Color: {r: 0, g: 0.2390026, b: 0.93962264, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -95,22 +95,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &2805134419785036474
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1495483174310231875}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76d328848ac4a3044a03fa8ccea6eca9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BasicEnemy
-  _speed: 1
-  _damage: 1
-  _damageOnContact: 1
-  _timeBetweenAttacks: 1
 --- !u!114 &6086741759788129312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,4 +170,28 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.28
+  m_Radius: 0.43
+--- !u!114 &3639852948119172250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1495483174310231875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a304706c8832ab04c9f80284c258feaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  _speed: 3
+  _damage: 1
+  _damageOnContact: 1
+  _timeBetweenAttacks: 1
+  _triggerRange: 6
+  _chargeTime: 1
+  _dashSpeed: 14
+  _dashDuration: 0.35
+  _dashesPerCharge: 1
+  _pauseBetweenDashes: 0.25
+  _recoveryTime: 1
+  _chargeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}

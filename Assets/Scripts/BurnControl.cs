@@ -15,7 +15,7 @@ public class BurnControl : MonoBehaviour
     [SerializeField] private bool playOnStart = true;
     [SerializeField] private bool loop = false;
 
-    [Header("Loop Noise")]
+    [Header("Loop Noise")]  
     [Tooltip("How far Dissolve Scale can move from its starting value each loop")]
     [SerializeField] private float scaleVariation = 3f;
     [Tooltip("How far Noise Strength can move from its starting value each loop")]
