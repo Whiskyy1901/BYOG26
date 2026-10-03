@@ -12,7 +12,7 @@ public class Move_Forward : MonoBehaviour
 
     private void Start()
     {
-        Destroy(this.gameObject, 5);
+        Destroy(this.gameObject, 2);
     }
 
     private void FixedUpdate()
