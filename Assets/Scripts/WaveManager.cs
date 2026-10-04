@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 [Serializable]
@@ -30,14 +29,16 @@ public class WaveManager : MonoBehaviour
     private readonly HashSet<GameObject> _waveSpawns = new HashSet<GameObject>();
     private readonly List<EnemyEntry> _affordable = new List<EnemyEntry>(); // reused to avoid allocations
 
-    private int _waveNumber;
+    private int _waveNumber = 1;
     private float _currentCooldown;
+
+    public int WaveNumber => _waveNumber;
 
     public event Action<GameObject> OnEnemyDefeated;
 
     private void Update()
     {
-        if (_waveSpawns.Count > 0) return;
+        if (_waveSpawns.Count > 0) return; 
 
         _currentCooldown += Time.deltaTime;
         if (_currentCooldown < _waveCooldown) return;
