@@ -26,11 +26,17 @@ public class WaveManager : MonoBehaviour
     [SerializeField] private float _minSpawnDistance = 8f;
     [SerializeField] private float _maxSpawnDistance = 12f;
 
+    // SFX
+    [Header("Sounds")]
+    [SerializeField] private SoundEffect _waveStartSound = new SoundEffect();
+    [Tooltip("Plays when the last enemy of a wave is gone.")]
+    [SerializeField] private SoundEffect _waveClearedSound = new SoundEffect();
+
     private readonly HashSet<GameObject> _waveSpawns = new HashSet<GameObject>();
     private readonly List<EnemyEntry> _affordable = new List<EnemyEntry>(); // reused to avoid allocations
 
-    private int _waveNumber = 1;
     private float _currentCooldown;
+    private int _waveNumber;
 
     public int WaveNumber => _waveNumber;
 
@@ -45,6 +51,7 @@ public class WaveManager : MonoBehaviour
 
         _currentCooldown = 0f;
         _waveNumber++; // wave 1 is the first wave
+        SoundManager.Play(_waveStartSound); // SFX
         SpawnWave(_baseWaveValue + (_waveNumber - 1) * _waveValueIncrease);
     }
 
@@ -87,8 +94,12 @@ public class WaveManager : MonoBehaviour
 
     public void NotifyDestroyed(GameObject obj)
     {
-        _waveSpawns.Remove(obj);
+        bool removed = _waveSpawns.Remove(obj);
         OnEnemyDefeated?.Invoke(obj);
+
+        // SFX: only when this removal emptied the wave, and not while the scene is unloading
+        if (removed && _waveSpawns.Count == 0 && gameObject.scene.isLoaded)
+            SoundManager.Play(_waveClearedSound);
     }
 
     // Random point on a ring around the player, so enemies never spawn on top of them.

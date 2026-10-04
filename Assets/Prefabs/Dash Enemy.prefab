@@ -108,6 +108,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
   _maxHealth: 5
+  _healthBar: {fileID: 0}
+  _shakeAmount: 0.25
+  _vignetteStrength: 0.4
+  _playerFlashColor: {r: 1, g: 0.92, b: 0.2, a: 1}
+  _passiveRegen: 1
+  _regenDelay: 3
+  _regenPerSecond: 0.5
+  _renderers: []
+  _flashColor: {r: 1, g: 0.25, b: 0.25, a: 1}
+  _flashDuration: 0.1
+  _hitSound:
+    clip: {fileID: 8300000, guid: b1d13c972b5a121479e9878552c00683, type: 3}
+    volume: 1
+    pitchVariation: 0.05
+  _deathSound:
+    clip: {fileID: 0}
+    volume: 1
+    pitchVariation: 0.05
+  _healSound:
+    clip: {fileID: 0}
+    volume: 1
+    pitchVariation: 0.05
+  _regenStartSound:
+    clip: {fileID: 0}
+    volume: 1
+    pitchVariation: 0.05
+  _regenTickAmount: 1
+  _regenTickSound:
+    clip: {fileID: 0}
+    volume: 1
+    pitchVariation: 0.05
+  _regenFullSound:
+    clip: {fileID: 0}
+    volume: 1
+    pitchVariation: 0.05
 --- !u!50 &280601789773319746
 Rigidbody2D:
   serializedVersion: 5
@@ -187,6 +222,10 @@ MonoBehaviour:
   _damage: 1
   _damageOnContact: 1
   _timeBetweenAttacks: 1
+  _contactAttackSound:
+    clip: {fileID: 0}
+    volume: 1
+    pitchVariation: 0.05
   _triggerRange: 6
   _chargeTime: 1
   _dashSpeed: 14
@@ -195,3 +234,11 @@ MonoBehaviour:
   _pauseBetweenDashes: 0.25
   _recoveryTime: 1
   _chargeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  _chargeSound:
+    clip: {fileID: 0}
+    volume: 1
+    pitchVariation: 0.05
+  _dashSound:
+    clip: {fileID: 0}
+    volume: 1
+    pitchVariation: 0.05

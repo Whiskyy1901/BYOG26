@@ -85,7 +85,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
+  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
   m_Color: {r: 0.85660374, g: 0.34749016, b: 0.34749016, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -108,6 +108,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
   _maxHealth: 5
+  _healthBar: {fileID: 0}
+  _shakeAmount: 0.25
+  _vignetteStrength: 0.4
+  _playerFlashColor: {r: 1, g: 0.92, b: 0.2, a: 1}
+  _passiveRegen: 1
+  _regenDelay: 3
+  _regenPerSecond: 0.5
+  _renderers: []
+  _flashColor: {r: 1, g: 0.25, b: 0.25, a: 1}
+  _flashDuration: 0.1
+  _hitSound:
+    clip: {fileID: 8300000, guid: b1d13c972b5a121479e9878552c00683, type: 3}
+    volume: 1
+    pitchVariation: 0.05
+  _deathSound:
+    clip: {fileID: 0}
+    volume: 1
+    pitchVariation: 0.05
+  _healSound:
+    clip: {fileID: 0}
+    volume: 1
+    pitchVariation: 0.05
+  _regenStartSound:
+    clip: {fileID: 0}
+    volume: 1
+    pitchVariation: 0.05
+  _regenTickAmount: 1
+  _regenTickSound:
+    clip: {fileID: 0}
+    volume: 1
+    pitchVariation: 0.05
+  _regenFullSound:
+    clip: {fileID: 0}
+    volume: 1
+    pitchVariation: 0.05
 --- !u!50 &280601789773319746
 Rigidbody2D:
   serializedVersion: 5
@@ -187,8 +222,20 @@ MonoBehaviour:
   _damage: 1
   _damageOnContact: 1
   _timeBetweenAttacks: 1
+  _contactAttackSound:
+    clip: {fileID: 0}
+    volume: 1
+    pitchVariation: 0.05
   _attackRange: 1.2
   _hitRange: 1.6
   _windup: 0.4
   _recovery: 0.6
   _windupColor: {r: 1, g: 0, b: 0.021260738, a: 1}
+  _windupSound:
+    clip: {fileID: 0}
+    volume: 1
+    pitchVariation: 0.05
+  _swingSound:
+    clip: {fileID: 0}
+    volume: 1
+    pitchVariation: 0.05

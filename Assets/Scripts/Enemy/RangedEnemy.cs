@@ -17,6 +17,11 @@ public class RangedEnemy : Enemy
     [SerializeField] private int _burstCount = 1;
     [SerializeField] private float _burstInterval = 0.1f;
 
+    // SFX
+    [Header("Ranged Sounds")]
+    [Tooltip("Plays for every bullet, so a burst plays it once per shot.")]
+    [SerializeField] private SoundEffect _shootSound = new SoundEffect();
+
     private float _fireTimer;
     private bool _isBursting;
 
@@ -68,6 +73,7 @@ public class RangedEnemy : Enemy
                       + Random.Range(-_spread * 0.5f, _spread * 0.5f);
 
         GameObject bullet = Instantiate(_bullet, origin, Quaternion.Euler(0f, 0f, angle));
+        SoundManager.Play(_shootSound); // SFX
 
         if (bullet.TryGetComponent<Damage>(out var damage))
             damage.Initialization(_damage);

@@ -11,6 +11,13 @@ public class MeleeEnemy : Enemy
     [SerializeField] private float _recovery = 0.6f;
     [SerializeField] private Color _windupColor = Color.red;
 
+    // SFX
+    [Header("Melee Sounds")]
+    [Tooltip("Plays when it starts winding up (the telegraph).")]
+    [SerializeField] private SoundEffect _windupSound = new SoundEffect();
+    [Tooltip("Plays when the swing happens, hit or miss. The player's own hurt sound covers a hit.")]
+    [SerializeField] private SoundEffect _swingSound = new SoundEffect();
+
     private enum State { Chasing, Windup, Recovery }
     private State _state = State.Chasing;
     private float _stateTimer;
@@ -31,6 +38,7 @@ public class MeleeEnemy : Enemy
                     Stop();
                     EnterState(State.Windup, _windup);
                     Tint(_windupColor);
+                    SoundManager.Play(_windupSound); // SFX
                 }
                 else
                 {
@@ -43,6 +51,7 @@ public class MeleeEnemy : Enemy
                 _stateTimer -= Time.fixedDeltaTime;
                 if (_stateTimer <= 0f)
                 {
+                    SoundManager.Play(_swingSound); // SFX
                    
                     if (DistanceToPlayer <= _hitRange)
                         DamagePlayer(_damage);

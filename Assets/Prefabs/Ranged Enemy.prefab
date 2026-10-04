@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.43, y: 0.43, z: 0.43}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1813897431017766233}
@@ -86,7 +86,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: cce85e132a43842a09301fd497983f25, type: 3}
+  m_Sprite: {fileID: -2135585597343286014, guid: eed45a33cd08446c8b88325cf82fc52f, type: 3}
   m_Color: {r: 0.66973525, g: 0.091114245, b: 0.7207546, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -109,6 +109,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
   _maxHealth: 5
+  _healthBar: {fileID: 0}
+  _shakeAmount: 0.25
+  _vignetteStrength: 0.4
+  _playerFlashColor: {r: 1, g: 0.92, b: 0.2, a: 1}
+  _passiveRegen: 1
+  _regenDelay: 3
+  _regenPerSecond: 0.5
+  _renderers: []
+  _flashColor: {r: 1, g: 0.25, b: 0.25, a: 1}
+  _flashDuration: 0.1
+  _hitSound:
+    clip: {fileID: 8300000, guid: b1d13c972b5a121479e9878552c00683, type: 3}
+    volume: 1
+    pitchVariation: 0.05
+  _deathSound:
+    clip: {fileID: 0}
+    volume: 1
+    pitchVariation: 0.05
+  _healSound:
+    clip: {fileID: 0}
+    volume: 1
+    pitchVariation: 0.05
+  _regenStartSound:
+    clip: {fileID: 0}
+    volume: 1
+    pitchVariation: 0.05
+  _regenTickAmount: 1
+  _regenTickSound:
+    clip: {fileID: 0}
+    volume: 1
+    pitchVariation: 0.05
+  _regenFullSound:
+    clip: {fileID: 0}
+    volume: 1
+    pitchVariation: 0.05
 --- !u!50 &280601789773319746
 Rigidbody2D:
   serializedVersion: 5
@@ -188,6 +223,10 @@ MonoBehaviour:
   _damage: 1
   _damageOnContact: 1
   _timeBetweenAttacks: 1
+  _contactAttackSound:
+    clip: {fileID: 0}
+    volume: 1
+    pitchVariation: 0.05
   _shootRange: 7
   _fireInterval: 1.5
   _firePos: {fileID: 1813897431017766233}
@@ -196,6 +235,10 @@ MonoBehaviour:
   _spread: 3
   _burstCount: 3
   _burstInterval: 0.1
+  _shootSound:
+    clip: {fileID: 0}
+    volume: 1
+    pitchVariation: 0.05
 --- !u!1 &8648164401927696581
 GameObject:
   m_ObjectHideFlags: 0

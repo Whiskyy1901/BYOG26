@@ -14,6 +14,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float dashDuration = 0.15f;
     [SerializeField] private float dashCooldown = 0.6f;
 
+    // SFX
+    [Header("Sounds")]
+    [SerializeField] private SoundEffect dashSound = new SoundEffect();
+
     private Rigidbody2D _rb;
     private InputHandler _input;
 
@@ -78,6 +82,7 @@ public class PlayerMovement : MonoBehaviour
         _dashTimer = dashDuration;
         _dashDirection = direction;
         _cooldownTimer = dashCooldown;
+        SoundManager.Play(dashSound); // SFX
     }
 
     private void HandleDash()

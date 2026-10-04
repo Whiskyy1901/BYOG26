@@ -14,6 +14,10 @@ public class PickupItem : MonoBehaviour
     [Tooltip("Seconds before an uncollected pickup disappears. 0 = never.")]
     [SerializeField] private float _lifetime = 10f;
 
+    // SFX
+    [Header("Sounds")]
+    [SerializeField] private SoundEffect _pickupSound = new SoundEffect();
+
     private LoadoutManager _loadoutManager;
 
     public void SetGunIndex(int gunIndex)
@@ -49,6 +53,7 @@ public class PickupItem : MonoBehaviour
         if (_isWeapon)
         {
             _loadoutManager.AddGun(_gunIndex, _weaponDuration);
+            SoundManager.Play(_pickupSound); // SFX
             Destroy(gameObject);
         }
         else if (_isAbility)

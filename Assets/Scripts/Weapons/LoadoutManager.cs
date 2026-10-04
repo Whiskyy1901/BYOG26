@@ -13,6 +13,13 @@ public class LoadoutManager : MonoBehaviour
     [Tooltip("Pickup prefab for each gun. Must be in the same order as the _guns list.")]
     [SerializeField] private List<GameObject> _pickupPrefabs = new List<GameObject>();
 
+    // SFX
+    [Header("Sounds")]
+    [Tooltip("Plays when the player switches guns (only if they hold more than one).")]
+    [SerializeField] private SoundEffect _switchSound = new SoundEffect();
+    [Tooltip("Plays when a timed gun runs out.")]
+    [SerializeField] private SoundEffect _gunExpiredSound = new SoundEffect();
+
     // Timed guns only. The starter gun (index 0 of _activeGuns) is never in here, so it never expires.
     private readonly Dictionary<GameObject, float> _expiryTimes = new Dictionary<GameObject, float>();
     private readonly List<GameObject> _expiredBuffer = new List<GameObject>();
@@ -47,6 +54,9 @@ public class LoadoutManager : MonoBehaviour
         {
             _currentIndex = (_currentIndex + 1) % _activeGuns.Count;
             SwitchGuns(_currentIndex);
+
+            if (_activeGuns.Count > 1)
+                SoundManager.Play(_switchSound); // SFX
         }
     }
 
@@ -138,6 +148,7 @@ public class LoadoutManager : MonoBehaviour
 
         _activeGuns.RemoveAt(index);
         gun.SetActive(false);
+        SoundManager.Play(_gunExpiredSound); // SFX
 
         if (index == _currentIndex)
             _currentIndex = 0;          // fall back to the starter gun

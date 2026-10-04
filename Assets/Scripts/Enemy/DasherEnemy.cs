@@ -15,6 +15,13 @@ public class DasherEnemy : Enemy
     [SerializeField] private float _recoveryTime = 1f;
     [SerializeField] private Color _chargeColor = Color.yellow;
 
+    // SFX
+    [Header("Dasher Sounds")]
+    [Tooltip("Plays once when it starts charging up (the telegraph).")]
+    [SerializeField] private SoundEffect _chargeSound = new SoundEffect();
+    [Tooltip("Plays at the start of every dash, including chained ones.")]
+    [SerializeField] private SoundEffect _dashSound = new SoundEffect();
+
     private enum State { Chasing, Charging, Dashing, Pausing, Recovering }
     private State _state = State.Chasing;
     private float _stateTimer;
@@ -32,6 +39,7 @@ public class DasherEnemy : Enemy
                     Stop();
                     EnterState(State.Charging, _chargeTime);
                     Tint(_chargeColor);
+                    SoundManager.Play(_chargeSound); // SFX
                 }
                 else
                 {
@@ -84,6 +92,7 @@ public class DasherEnemy : Enemy
         _dashDirection = DirectionToPlayer; // locked for the whole dash, so it can be dodged
         _dashesLeft--;
         EnterState(State.Dashing, _dashDuration);
+        SoundManager.Play(_dashSound); // SFX
     }
 
     private void EnterState(State state, float duration)

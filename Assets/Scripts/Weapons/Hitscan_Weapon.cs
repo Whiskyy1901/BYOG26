@@ -14,6 +14,10 @@ public class Hitscan_Weapon : MonoBehaviour
     [SerializeField] private float _damage;
 
     [Header("Firetype")] [SerializeField] private FireType _fireType;
+
+    // SFX
+    [Header("Sounds")]
+    [SerializeField] private SoundEffect _shootSound = new SoundEffect();
     
     private InputAction _fireAction;
     
@@ -42,6 +46,8 @@ public class Hitscan_Weapon : MonoBehaviour
 
     private void Shoot()
     {
+        SoundManager.Play(_shootSound); // SFX
+
         RaycastHit2D[] hits2D = Physics2D.RaycastAll(_firePos.position, transform.right, _range);
 
         foreach (RaycastHit2D hit in hits2D)

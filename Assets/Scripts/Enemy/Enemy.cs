@@ -11,6 +11,11 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected bool _damageOnContact = true;
     [SerializeField] protected float _timeBetweenAttacks = 1f;
 
+    // SFX
+    [Header("Sounds")]
+    [Tooltip("Plays when a contact hit lands (only used if Damage On Contact is on).")]
+    [SerializeField] protected SoundEffect _contactAttackSound = new SoundEffect();
+
     protected GameObject _player;
     protected Rigidbody2D _rb;
     protected SpriteRenderer _sprite;
@@ -102,6 +107,7 @@ public abstract class Enemy : MonoBehaviour
         {
             health.Damage(_damage);
             _attackTimer = 0f;
+            SoundManager.Play(_contactAttackSound); // SFX
             OnContactAttack();
         }
     }
